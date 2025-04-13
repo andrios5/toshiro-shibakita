@@ -1,4 +1,2 @@
-FROM httpd:2.4
-WORKDIR /usr/local/apache2/htdocs/
-COPY . /usr/local/apache2/htdocs/
-EXPOSE 80
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
