@@ -54,7 +54,7 @@ $query = "INSERT INTO dados (ProdutoID, Nome, Categoria, Peso, Preco, Host) VALU
 
 
 if ($link->query($query) === TRUE) {
-  echo "New record created successfully";
+  echo "Produto registrado com sucesso!";
 } else {
   echo "Error: " . $link->error;
 }
