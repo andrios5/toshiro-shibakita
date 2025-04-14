@@ -36,12 +36,21 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-$valor_rand1 =  rand(1, 999);
+// Contar entradas existentes no ProdutoID
+$result = $link->query("SELECT COUNT(ProdutoID) AS total FROM dados");
+$row = $result->fetch_assoc();
+$total_produto_id = $row['total'];
+
+// Incrementar o valor para a nova entrada
+$novo_produto_id = $total_produto_id + 1;
+
+
+// Gerar valores aleatórios
 $valor_rand2 = strtoupper(substr(bin2hex(random_bytes(4)), 1));
 $host_name = gethostname();
 
 
-$query = "INSERT INTO dados (ProdutoID, Nome, Categoria, Peso, Preco, Host) VALUES ('$valor_rand1' , '$valor_rand2', '$valor_rand2', '$valor_rand2', '$valor_rand2','$host_name')";
+$query = "INSERT INTO dados (ProdutoID, Nome, Categoria, Peso, Preco, Host) VALUES ('$novo_produto_id' , '$valor_rand2', '$valor_rand2', '$valor_rand2', '$valor_rand2','$host_name')";
 
 
 if ($link->query($query) === TRUE) {
